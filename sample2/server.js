@@ -1,19 +1,9 @@
-const WebSocket = require("ws");
-const server = new WebSocket.Server({ port: 3001 });
+const express = require("express");
+const app = express();
+const port = 3000;
 
-server.on("connection", (socket) => {
-  console.log("Client connected");
-  socket.on("message", (message, isBinary) => {
-    console.log("Received message:", message);
-    server.clients.forEach((client) => {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(message, { binary: isBinary });
-      }
-    });
-  });
-  socket.on("close", () => {
-    console.log("Client disconnected");
-  });
+app.use(express.static("public"));
+
+app.listen(port, () => {
+  console.log(`Web server is running on http://localhost:${port}`);
 });
-
-console.log("WebSocket server is running on ws://localhost:3001");

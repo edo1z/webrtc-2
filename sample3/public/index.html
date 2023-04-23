@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P2P Chat App</title>
+  <link rel="stylesheet" href="./common.css">
+  <script src="https://unpkg.com/peerjs@1.3.2/dist/peerjs.min.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="message-list">
+    </div>
+    <div class="input-area">
+      <input type="text" placeholder="Type your message">
+      <button>Send</button>
+    </div>
+  </div>
+  <div class="content">
+    <div class="video-area">
+      <video>Peer's video</video>
+      <video>Your video</video>
+    </div>
+    <div class="control-area">
+      <div>
+        <input type="text" placeholder="Your Peer ID">
+        <button>Set</button>
+      </div>
+      <div>
+        <input type="text" placeholder="Peer's Peer ID">
+        <button>Connect</button>
+      </div>
+      <div>
+        <button>Audio mute</button>
+        <button>Video mute</button>
+        <button>End chat</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const peer = new Peer('apple');
+    peer.on('open', id => {
+      console.log('My peer ID is: ' + id);
+    });
+  </script>
+</body>
+</html>
